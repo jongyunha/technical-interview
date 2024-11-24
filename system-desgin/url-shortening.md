@@ -26,7 +26,7 @@ public class UrlShortenerService {
     private static final String ALPHABET = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
     private static final int BASE = ALPHABET.length();
     
-    // 1. Base62 인코딩 방식
+    // 1. Base64 인코딩 방식
     public String generateShortUrl(long id) {
         StringBuilder shortUrl = new StringBuilder();
         
