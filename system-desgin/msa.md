@@ -296,4 +296,224 @@ public class ObservabilityConfig {
 
 를 달성할 수 있습니다.
 
+면접관: 마이크로서비스 아키텍처의 단점과 이를 극복하기 위한 전략은 무엇인가요?
 
+## 4. 마이크로서비스 아키텍처의 단점과 극복 전략
+
+### 4.1 복잡성 관리
+```java
+@Configuration
+public class ServiceManagementConfig {
+
+    // 1. API Gateway를 통한 복잡성 추상화
+    @Bean
+    public RouteLocator gatewayRoutes(RouteLocatorBuilder builder) {
+        return builder.routes()
+            .route("order-service", r -> r
+                .path("/api/orders/**")
+                .filters(f -> f
+                    .circuitBreaker(c -> c.setFallbackUri("/fallback"))
+                    .rateLimit(config -> config.setKeyResolver(userKeyResolver))
+                    .retry(retryConfig))
+                .uri("lb://order-service"))
+            .build();
+    }
+
+    // 2. 서비스 디스커버리
+    @Bean
+    public DiscoveryClient discoveryClient() {
+        return ServiceDiscoveryBuilder.builder(ServiceInstance.class)
+            .client(curatorFramework)
+            .basePath("/services")
+            .watchInstances(true)
+            .build();
+    }
+}
+```
+
+### 4.2 운영 복잡성 해결
+```java
+@Configuration
+public class OperationalToolingConfig {
+
+    // 1. 중앙 집중식 설정 관리
+    @Bean
+    public ConfigurationClient configClient() {
+        return ConfigClientBuilder.create()
+            .withConfigServer("config-server:8888")
+            .withFailFast(true)
+            .withRetry(true)
+            .build();
+    }
+
+    // 2. 통합 모니터링
+    @Bean
+    public MetricsRegistry metricsRegistry() {
+        return new CompositeMeterRegistry()
+            .add(new PrometheusRegistry())
+            .add(new GraphiteRegistry())
+            .add(new ElasticRegistry());
+    }
+
+    // 3. 자동화된 배포 파이프라인
+    @Bean
+    public DeploymentPipeline deploymentPipeline() {
+        return DeploymentPipeline.builder()
+            .withCanaryDeployment()
+            .withBlueGreenDeployment()
+            .withRollbackStrategy()
+            .build();
+    }
+}
+```
+
+### 4.3 데이터 일관성 문제 해결
+```java
+@Service
+public class DataConsistencyManager {
+
+    // 1. 이벤트 기반 데이터 동기화
+    @EventListener
+    public void handleDataChangeEvent(DataChangeEvent event) {
+        switch (event.getType()) {
+            case USER_UPDATED:
+                syncUserData(event.getUserId());
+                break;
+            case ORDER_STATUS_CHANGED:
+                syncOrderStatus(event.getOrderId());
+                break;
+        }
+    }
+
+    // 2. 데이터 버저닝
+    @Service
+    public class DataVersionManager {
+        private final VersionRepository versionRepository;
+
+        public void updateData(String key, String value, long version) {
+            if (!versionRepository.checkAndUpdate(key, version)) {
+                throw new OptimisticLockException("Version conflict");
+            }
+            dataRepository.save(key, value, version + 1);
+        }
+    }
+}
+```
+
+### 4.4 네트워크 문제 해결
+```java
+@Service
+public class NetworkResiliencyManager {
+
+    // 1. 타임아웃 관리
+    @Bean
+    public RestTemplate resilientRestTemplate() {
+        return RestTemplateBuilder.create()
+            .setConnectTimeout(Duration.ofSeconds(3))
+            .setReadTimeout(Duration.ofSeconds(5))
+            .build();
+    }
+
+    // 2. 벌크헤드 패턴
+    @Bean
+    public ThreadPoolTaskExecutor serviceExecutor() {
+        ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
+        executor.setCorePoolSize(10);
+        executor.setMaxPoolSize(20);
+        executor.setQueueCapacity(50);
+        executor.setRejectedExecutionHandler(new CallerRunsPolicy());
+        return executor;
+    }
+
+    // 3. 서킷브레이커
+    @CircuitBreaker(name = "serviceCall", fallbackMethod = "fallback")
+    public ServiceResponse callService(ServiceRequest request) {
+        return serviceClient.call(request);
+    }
+}
+```
+
+### 4.5 테스트 복잡성 해결
+```java
+@SpringBootTest
+public class ServiceIntegrationTests {
+
+    // 1. 계약 테스트
+    @Test
+    public void verifyServiceContract() {
+        // Consumer Driven Contract Testing
+        ContractVerifier.verify(consumerContract)
+            .againstProvider(providerStub);
+    }
+
+    // 2. 통합 테스트 환경
+    @TestConfiguration
+    public class TestConfig {
+        @Bean
+        public TestContainers testContainers() {
+            return new TestContainers()
+                .withKafka()
+                .withMongo()
+                .withRedis();
+        }
+    }
+
+    // 3. 카오스 엔지니어링
+    @Test
+    public void performChaosTest() {
+        chaosMonkey.injectLatency()
+            .withLatency(Duration.ofMillis(500))
+            .withProbability(0.1);
+            
+        verify(serviceMetrics.getLatency())
+            .isLessThan(Duration.ofSeconds(1));
+    }
+}
+```
+
+### 4.6 비용 관리
+```java
+@Configuration
+public class CostOptimizationConfig {
+
+    // 1. 자원 사용량 모니터링
+    @Bean
+    public ResourceMonitor resourceMonitor() {
+        return ResourceMonitor.builder()
+            .withCPUMonitoring()
+            .withMemoryMonitoring()
+            .withNetworkMonitoring()
+            .build();
+    }
+
+    // 2. 자동 스케일링
+    @Bean
+    public AutoScaler autoScaler() {
+        return AutoScaler.builder()
+            .withMetricBasedScaling()
+            .withScheduleBasedScaling()
+            .withCostOptimization()
+            .build();
+    }
+
+    // 3. 비용 분석
+    @Scheduled(cron = "0 0 0 * * *")
+    public void analyzeCosts() {
+        costAnalyzer.generateReport()
+            .byService()
+            .byResource()
+            .byTimeRange()
+            .export();
+    }
+}
+```
+
+이러한 전략들을 통해 마이크로서비스의 주요 단점들을 극복하면서도 장점을 최대한 활용할 수 있습니다. 핵심은:
+
+1. 적절한 도구와 프레임워크 선택
+2. 자동화된 운영 환경 구축
+3. 견고한 모니터링과 로깅 시스템
+4. 체계적인 테스트 전략
+5. 효율적인 비용 관리
+
+를 통해 마이크로서비스 아키텍처의 복잡성을 관리 가능한 수준으로 유지하는 것입니다.

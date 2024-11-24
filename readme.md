@@ -44,6 +44,15 @@
 - [캐싱 전략](system-design/caching.md)
 - [데이터 샤딩](system-design/sharding.md)
 - [마이크로서비스 아키텍처](system-design/msa.md)
+- [메세징 시스템(Slack, Kafka)](system-design/slack.md)
+- [URL 단축 서비스](system-design/url-shortening.md)
+- [동영상 스트리밍 플랫폼](system-design/video-streaming.md)
+- [파일 공유 시스템(Dropbox)](system-design/dropbox.md)
+- [소셜 미디어 피드(Twitter, Instagram)](system-design/social-feed.md)
+- [온라인 예약 시스템](system-design/booking.md)
+- [실시간 알림 시스템](system-design/notification.md)
+- [차량 공유 서비스(Uber)](system-design/uber.md)
+- [결제 시스템](system-design/payment.md)
 
 ## 기여 방법
 
