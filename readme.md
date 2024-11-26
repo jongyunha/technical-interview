@@ -16,6 +16,13 @@
 - [동기와 비동기](os/sync-async.md)
 - [교착상태(Deadlock)](os/deadlock.md)
 - [메모리 관리](os/memory-management.md)
+- [Cpu 스케줄링](os/cpu-scheduling.md)
+- [인터럽트](os/interrupt.md)
+- [시스템 콜](os/system-call.md)
+- [파일 시스템](os/file-system.md)
+- [가상 메모리](os/virtual-memory.md)
+- [캐시](os/cache.md)
+- [입출력 I/O](os/io.md)
 
 ### 3. Network
 - [TCP/IP 프로토콜](network/tcp-ip.md)
