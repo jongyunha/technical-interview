@@ -53,6 +53,7 @@
 - [실시간 알림 시스템](system-design/notification.md)
 - [차량 공유 서비스(Uber)](system-design/uber.md)
 - [결제 시스템](system-design/payment.md)
+- [discord](system-design/discord.md)
 
 ## 기여 방법
 
