@@ -57,7 +57,6 @@
 - [CI/CD 파이프라인 시스템](system-design/cicd.md)
 - [코드 배포 시스템(Spinnaker)](system-design/deployment.md)
 - [실시간 추천 시스템](system-design/recommendation.md)
-  보안 관련 챕터를 다음과 같이 추가하는 것을 제안드립니다:
 
 ### 6. Security (보안)
 - [인증과 인가 기본 개념](security/auth-basics.md)
