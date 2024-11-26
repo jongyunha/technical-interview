@@ -54,6 +54,11 @@
 - [차량 공유 서비스(Uber)](system-design/uber.md)
 - [결제 시스템](system-design/payment.md)
 - [discord](system-design/discord.md)
+- [CI/CD 파이프라인 시스템](system-design/cicd.md)
+- [코드 배포 시스템(Spinnaker)](system-design/deployment.md)
+- [실시간 추천 시스템](system-design/recommendation.md)
+- [분산 로그 수집 시스템(ELK)](system-design/logging.md)
+- [분산 설정 관리 시스템](system-design/configuration.md)
 
 ## 기여 방법
 
