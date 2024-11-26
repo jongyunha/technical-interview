@@ -64,6 +64,7 @@
 - [CI/CD 파이프라인 시스템](system-design/cicd.md)
 - [코드 배포 시스템(Spinnaker)](system-design/deployment.md)
 - [실시간 추천 시스템](system-design/recommendation.md)
+- [LoL 전적 검색 시스템](system-design/lol-history.md)
 
 ### 6. Security (보안)
 - [인증과 인가 기본 개념](security/auth-basics.md)
