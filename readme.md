@@ -57,8 +57,18 @@
 - [CI/CD 파이프라인 시스템](system-design/cicd.md)
 - [코드 배포 시스템(Spinnaker)](system-design/deployment.md)
 - [실시간 추천 시스템](system-design/recommendation.md)
-- [분산 로그 수집 시스템(ELK)](system-design/logging.md)
-- [분산 설정 관리 시스템](system-design/configuration.md)
+  보안 관련 챕터를 다음과 같이 추가하는 것을 제안드립니다:
+
+### 6. Security (보안)
+- [인증과 인가 기본 개념](security/auth-basics.md)
+- [세션 기반 인증](security/session-auth.md)
+- [토큰 기반 인증 (JWT)](security/jwt-auth.md)
+- [OAuth 2.0과 소셜 로그인](security/oauth.md)
+- [API 보안](security/api-security.md)
+- [암호화와 해싱](security/encryption.md)
+- [XSS와 CSRF 방어](security/xss-csrf.md)
+- [접근 제어와 RBAC](security/access-control.md)
+- [보안 모니터링과 감사](security/security-monitoring.md)
 
 ## 기여 방법
 
