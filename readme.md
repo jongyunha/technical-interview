@@ -1,17 +1,19 @@
-# Technical Interview Guide for Backend Developers
+_# Technical Interview Guide for Backend Developers
 
 이 저장소는 백엔드 개발자를 위한 기술 면접 가이드를 제공합니다. 실제 기업의 면접 질문과 모범 답안, 그리고 각각의 답변에 대한 참고 자료들을 포함하고 있습니다.
 
 ## 목차
 
 ### 1. Database
-- [인덱스(Index)의 동작 원리와 장단점](database/index.md) 
+
+- [인덱스(Index)의 동작 원리와 장단점](database/index.md)
 - [트랜잭션과 ACID](database/transaction-acid.md)
 - [트랜잭션 격리 수준(Isolation Level)](database/transaction-isolation.md)
 - [정규화와 반정규화](database/normalization.md)
 - [SQL 튜닝](database/sql-tuning.md)
 
 ### 2. Operating System
+
 - [프로세스와 스레드](os/process-thread.md)
 - [동기와 비동기](os/sync-async.md)
 - [교착상태(Deadlock)](os/deadlock.md)
@@ -25,12 +27,14 @@
 - [입출력 I/O](os/io.md)
 
 ### 3. Network
+
 - [TCP/IP 프로토콜](network/tcp-ip.md)
 - [HTTP와 HTTPS](network/http-https.md)
 - [REST API](network/rest-api.md)
 - [로드 밸런싱](network/load-balancing.md)
 
 ### 4. Container & Orchestration
+
 - [Docker 기본개념](container/docker.md)
 - [Docker 네트워킹](container/docker-network.md)
 - [Docker 볼륨과 스토리지](container/docker-volume.md)
@@ -40,13 +44,37 @@
 - [Kubernetes 스토리지](container/kubernetes-storage.md)
 - [Kubernetes 보안](container/kubernetes-security.md)
 
-### 4. Java & Spring
+### 5. Java & Spring
+
 - [JVM과 가비지 컬렉션](java/jvm-gc.md)
 - [스프링 IoC/DI](spring/ioc-di.md)
 - [스프링 AOP](spring/aop.md)
 - [스프링 트랜잭션](spring/transaction.md)
 
+#### 5.1 JVM Architecture & Memory
+
+- [JVM 아키텍처와 실행 과정](java/jvm-architecture.md)
+    - Method Area (Static Area)
+    - Heap Area
+    - Stack Area
+    - PC Register
+    - Native Method Stack
+
+#### 5.2 JVM Performance
+
+- [JIT 컴파일러](java/jit-compiler.md)
+    - Interpretation vs JIT Compilation
+    - Hot Spot Detection
+    - Optimization Techniques
+    - CPU Profiling
+    - Memory Profiling
+    - Thread Dump 분석
+    - Object Pool
+    - String Interning
+    - Escape Analysis
+
 ### 5. 시스템 디자인
+
 - [대용량 트래픽 처리](system-design/traffic.md)
 - [캐싱 전략](system-design/caching.md)
 - [데이터 샤딩](system-design/sharding.md)
@@ -66,7 +94,8 @@
 - [실시간 추천 시스템](system-design/recommendation.md)
 - [LoL 전적 검색 시스템](system-design/lol-history.md)
 
-### 6. Security (보안)
+### 7. Security (보안)
+
 - [인증과 인가 기본 개념](security/auth-basics.md)
 - [세션 기반 인증](security/session-auth.md)
 - [토큰 기반 인증 (JWT)](security/jwt-auth.md)
@@ -94,19 +123,24 @@
 ## 참고 자료 형식
 
 각 문서는 다음 형식을 따릅니다:
+
 ```markdown
 # 주제명
 
 ## 질문
+
 [실제 면접 질문]
 
 ## 답변
+
 [모범 답안]
 
 ## 심화 질문
+
 [예상되는 추가 질문들]
 
 ## 참고 자료
+
 [공식 문서, 블로그, 논문 등 참고 자료 링크]
 ```
 
@@ -120,4 +154,4 @@
 
 [![Star History Chart](https://api.star-history.com/svg?repos=[jongyunha]/technical-interview&type=Date)](https://star-history.com/#[username]/technical-interview&Date)
 
----
+---_
