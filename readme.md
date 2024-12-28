@@ -1,4 +1,4 @@
-_# Technical Interview Guide for Backend Developers
+# Technical Interview Guide for Backend Developers
 
 이 저장소는 백엔드 개발자를 위한 기술 면접 가이드를 제공합니다. 실제 기업의 면접 질문과 모범 답안, 그리고 각각의 답변에 대한 참고 자료들을 포함하고 있습니다.
 
